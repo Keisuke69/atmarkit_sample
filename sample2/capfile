@@ -1,0 +1,10 @@
+role :web, "192.168.1.1", "192.168.1.2"
+role :db, "192.168.2.1", "192.168.2.2"
+
+task :count_dirs, :roles => :web do
+  run "ls -l / | grep ^d | wc -l"
+end
+
+task :count_processess, :roles => :db do
+  run "ps aux | sed -e '0,1d' | wc -l"
+end
